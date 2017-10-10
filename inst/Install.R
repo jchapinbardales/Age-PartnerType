@@ -19,10 +19,26 @@ system("rm est/fit.p.rda")
 system("rm est/fit.i.rda")
 
 
-## Install run scriptsd
+## Install run scripts
 
 system("scp inst/runsim.* hyak:/gscratch/csde/sjenness/hivtp/jcb/")
 
+
 ## Run sims
 
-qsub -q batch -t 1 -m n -v SIMNO=1000,NJOBS=1 runsim.sh
+qsub -q batch -t 1-100 -m n -v SIMNO=1000 runsim.sh # run
+
+qsub -q bf -t 101-200 -m n -v SIMNO=1000 runsim.sh
+qsub -q bf -t 201-300 -m n -v SIMNO=1000 runsim.sh
+qsub -q bf -t 301-400 -m n -v SIMNO=1000 runsim.sh
+qsub -q bf -t 401-500 -m n -v SIMNO=1000 runsim.sh
+qsub -q bf -t 501-625 -m n -v SIMNO=1000 runsim.sh
+
+
+## Process datasets
+
+process_simfiles(simno = 1000, outdir = "data/", compress = "xz")
+
+
+## Download data
+
