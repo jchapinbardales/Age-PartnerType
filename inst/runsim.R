@@ -10,8 +10,6 @@ fsimno <- paste(simno, jobno, sep = ".")
 
 load("est/st.rda")
 
-est <- list(fit.m, fit.p, fit.i)
-
 param <- param_msm(nwstats = st,
                    ai.scale.YY = 1.437,
                    ai.scale.OY = 1.279,
