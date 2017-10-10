@@ -5,7 +5,6 @@ suppressMessages(library("EpiModelHIV"))
 
 simno <- as.numeric(Sys.getenv("SIMNO"))
 jobno <- as.numeric(Sys.getenv("PBS_ARRAYID"))
-njobs <- as.numeric(Sys.getenv("NJOBS"))
 fsimno <- paste(simno, jobno, sep = ".")
 
 load("est/st.rda")
@@ -31,4 +30,4 @@ control <- control_msm(simno = fsimno,
                        verbose = FALSE)
 
 netsim_hpc("est/fit.rda", param, init, control,
-           compress = FALSE, verbose = FALSE)
+           compress = TRUE, verbose = FALSE)
