@@ -1,4 +1,6 @@
 
+library(EpiModelHIV)
+
 ## Install software
 
 devtools::install_github("jchapinbardales/EpiModelHIV", ref = "AgePT")
@@ -37,8 +39,9 @@ qsub -q bf -t 501-625 -m n -v SIMNO=1000 runsim.sh
 
 ## Process datasets
 
-process_simfiles(simno = 1000, outdir = "data/", compress = "xz")
+sim <- merge_simfiles(simno = 1000)
 
 
 ## Download data
 
+system("scp hyak:/gscratch/csde/sjenness/hivtp/jcb/data/*.rda data/")
